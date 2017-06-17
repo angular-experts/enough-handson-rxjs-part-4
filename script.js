@@ -99,3 +99,60 @@ talks$.filter(talk => {
 );
 
 // Q: How to pluck multiple properties from a object stream
+
+console.log('---------- Map with a HTTP call using fromPromise-------------');
+
+function getGithubUser(username) {
+  return $.ajax({
+    url:  'https://api.github.com/users/' + username,
+    dataType: 'jsonp'
+  }).promise();
+}
+
+Rx.Observable.fromPromise(getGithubUser('afirdousi'))
+              .map(user => user.data)
+              .subscribe( data => {
+                  console.log('User data: ',data);
+              });
+
+
+Rx.Observable.fromPromise(getGithubUser('afirdousi'))
+  .map(user => user.data)
+  .subscribe( data => {
+    console.log('User data: ',data);
+  });
+
+
+// From Event with jQuery
+const btnGithub$ =  Rx.Observable.fromEvent($('#btnGithub'),'click');
+
+
+btnGithub$.subscribe(
+  value => {
+
+    const gitUser = $('#txtGitUser').val();
+    Rx.Observable.fromPromise(getGithubUser(gitUser))
+      .map(user => user.data)
+      .subscribe( data => {
+          displayInformation(data);
+      });
+
+  }
+);
+
+function displayInformation(data){
+
+  const gitUser = $('#txtGitUser').val();
+  if(data.message !== 'Not Found') {
+      $('#tblGithubUser').css('display', 'block');
+      $('#noRecord').css('display', 'none');
+      $('#userName').text(data.login);
+      $('#imgAvatar').attr('src', data.avatar_url);
+      $('#location').text(data.location);
+      $('#name').text(data.name);
+  } else {
+      $('#tblGithubUser').css('display', 'none');
+      $('#noRecord').css('display', 'block');
+      $('#noRecord').text('No github info found for ', gitUser);
+  }
+}

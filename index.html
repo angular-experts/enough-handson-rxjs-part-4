@@ -3,6 +3,14 @@
 
 <head>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/5.4.0/Rx.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <style>
+        #tblGithubUser, #noRecord{
+            display: none;
+            border:3px dotted #dedede;
+            margin:20px;
+        }
+    </style>
 </head>
 <body>
 <h1>Enough Handson - RxJS!</h1>
@@ -10,6 +18,32 @@
 <h4>Part 4 : Map, Pluck and Filter</h4>
 
     <button id="btnClick">Click me</button>
+    <hr>
+    <input type="text" id="txtGitUser">
+    <button id="btnGithub">Get Github User</button>
+    <table cellpadding="5" cellspacing="10" id="tblGithubUser">
+        <tr>
+            <td><strong>Username</strong></td>
+            <td id="userName"></td>
+        </tr>
+        <tr>
+            <td><strong>Location</strong></td>
+            <td id="location"></td>
+        </tr>
+        <tr>
+            <td><strong>Name</strong></td>
+            <td id="name"></td>
+        </tr>
+        <tr>
+            <td><strong>Avatar</strong></td>
+            <td>
+                <img src="" alt="" id="imgAvatar">
+            </td>
+        </tr>
+    </table>
+    <div id="noRecord">
+
+    </div>
     <script src="script.js"></script>
 </body>
 
