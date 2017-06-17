@@ -1,3 +1,3 @@
-# enough-handson-rxjs-part-3
+# enough-handson-rxjs-part-4
 
-> Part 3 : Stream from intervals, timers and range e.t.c
+> Part 4 : Map, Pluck and Filter
